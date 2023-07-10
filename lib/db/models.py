@@ -21,6 +21,8 @@ class Flight(Base):
             f"Departure Time: {self.departure_time}" + \
             f"Arrival Time: {self.arrival_time}"
     
+
+    
 class Passenger(Base):
     __tablename__ = 'passengers'
 
@@ -34,6 +36,8 @@ class Passenger(Base):
             f"Name: {self.name}" + \
             f"Phone Number: {self.phone_number}" + \
             f"Flight ID: {self.flight_id}"
+    
+    
 
 class Reservation(Base):
     __tablename__ = 'reservations'
