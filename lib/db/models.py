@@ -42,3 +42,11 @@ class Reservation(Base):
     confirmation = Column(String())
     reservation_status = Column(String())
     date = Column(DateTime())
+    passenger_id = Column(Integer(), ForeignKey('passenger.id'))
+
+    def __repr__(self):
+        return f"ID: {self.id}" + \
+            f"Confirmation Number: {self.confirmation}" + \
+            f"Reservation Status: {self.reservation_status}" + \
+            f"Date: {self.date}" + \
+            f"Passenger ID: {self.passenger_id}"
