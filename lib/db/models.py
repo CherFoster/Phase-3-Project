@@ -1,4 +1,5 @@
 from sqlalchemy import Column, String, Integer, ForeignKey, DateTime
+from sqlalchemy.orm import relationship, backref
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
@@ -12,6 +13,8 @@ class Flight(Base):
     destination = Column(String())
     departure_time = Column(Integer())
     arrival_time = Column(Integer())
+
+    passengers = relationship('Passenger', backref='flight')
 
     def __repr__(self):
         return f"ID: {self.id}" + \
@@ -29,7 +32,7 @@ class Passenger(Base):
     id = Column(Integer(), primary_key=True)
     name = Column(String())
     phone_number = Column(Integer())
-    flight_id = Column(Integer(), ForeignKey('flight.id'))
+    flight_id = Column(Integer(), ForeignKey('flights.id'))
 
     def __repr__(self):
         return f"Id: {self.id}" + \
@@ -37,7 +40,7 @@ class Passenger(Base):
             f"Phone Number: {self.phone_number}" + \
             f"Flight ID: {self.flight_id}"
     
-    
+
 
 class Reservation(Base):
     __tablename__ = 'reservations'
@@ -46,7 +49,7 @@ class Reservation(Base):
     confirmation = Column(String())
     reservation_status = Column(String())
     date = Column(DateTime())
-    passenger_id = Column(Integer(), ForeignKey('passenger.id'))
+    passenger_id = Column(Integer(), ForeignKey('passengers.id'))
 
     def __repr__(self):
         return f"ID: {self.id}" + \
