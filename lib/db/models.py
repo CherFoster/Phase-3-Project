@@ -34,6 +34,8 @@ class Passenger(Base):
     phone_number = Column(Integer())
     flight_id = Column(Integer(), ForeignKey('flights.id'))
 
+    reservations = relationship('Reservation', backref='reservation')
+
     def __repr__(self):
         return f"Id: {self.id}" + \
             f"Name: {self.name}" + \
@@ -50,6 +52,8 @@ class Reservation(Base):
     reservation_status = Column(String())
     date = Column(DateTime())
     passenger_id = Column(Integer(), ForeignKey('passengers.id'))
+
+    
 
     def __repr__(self):
         return f"ID: {self.id}" + \
