@@ -8,6 +8,7 @@ class Flight(Base):
     __tablename__ = 'flights'
 
     id = Column(Integer(), primary_key=True)
+    airline = Column(String())
     flight_number = Column(Integer())
     origin = Column(String())
     destination = Column(String())
@@ -18,6 +19,7 @@ class Flight(Base):
 
     def __repr__(self):
         return f"ID: {self.id}" + \
+            f"Airline: {self.airline}" + \
             f"Flight Number: {self.flight_number}" + \
             f"Origin: {self.origin}" + \
             f"Destination: {self.destination}" + \
