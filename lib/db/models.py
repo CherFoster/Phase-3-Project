@@ -51,7 +51,6 @@ class Reservation(Base):
 
     id = Column(Integer(), primary_key=True)
     confirmation = Column(String())
-    reservation_status = Column(String())
     date = Column(DateTime())
     flight_id = Column(Integer(), ForeignKey('flights.id'))
 
@@ -59,6 +58,5 @@ class Reservation(Base):
         return (
             f"ID: {self.id}" + \
             f"Confirmation Number: {self.confirmation}" + \
-            f"Reservation Status: {self.reservation_status}" + \
             f"Date: {self.date}"
         )

@@ -26,11 +26,11 @@ if __name__ == "__main__":
             flight_number = random.randint(100, 9999),
             origin = f"{fake.city()}",
             destination = f"{fake.city()}",
-            departure_time = datetime.time(random_hour, random_minute)     
+            departure_time = datetime.time(random_hour, random_minute),
+            arrival_time = datetime.time(random_hour, random_minute)
         )
         flights.append(flight)
-        session.add(flight)
-        session.commit()
+    
 
 
 
@@ -56,6 +56,6 @@ if __name__ == "__main__":
 
 
 
-
+    session.add(flight)
     session.commit()
     session.close()
