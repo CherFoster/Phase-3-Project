@@ -15,6 +15,7 @@ class Flight(Base):
     departure_time = Column(Integer())
     arrival_time = Column(Integer())
     passengers = relationship('Passenger', backref=backref('flight'))
+    reservations = relationship('Reservation', backref=backref('flight'))
 
     def __repr__(self):
         return (
@@ -32,17 +33,16 @@ class Passenger(Base):
     __tablename__ = 'passengers'
 
     id = Column(Integer(), primary_key=True)
-    name = Column(String())
+    first_name = Column(String())
+    last_name = Column(String())
     phone_number = Column(Integer())
     flight_id = Column(Integer(), ForeignKey('flights.id'))
-    reservations = relationship('Reservation', backref=backref('reservation'))
 
     def __repr__(self):
         return (
             f"Id: {self.id}" + \
-            f"Name: {self.name}" + \
-            f"Phone Number: {self.phone_number}" + \
-            f"Flight ID: {self.flight_id}"
+            f"Name: {self.first_name} {self.last_name}" + \
+            f"Phone Number: {self.phone_number}"
         )
 
 
@@ -53,13 +53,12 @@ class Reservation(Base):
     confirmation = Column(String())
     reservation_status = Column(String())
     date = Column(DateTime())
-    passenger_id = Column(Integer(), ForeignKey('passengers.id'))
+    flight_id = Column(Integer(), ForeignKey('flights.id'))
 
     def __repr__(self):
         return (
             f"ID: {self.id}" + \
             f"Confirmation Number: {self.confirmation}" + \
             f"Reservation Status: {self.reservation_status}" + \
-            f"Date: {self.date}" + \
-            f"Passenger ID: {self.passenger_id}"
+            f"Date: {self.date}"
         )

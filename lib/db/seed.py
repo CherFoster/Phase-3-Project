@@ -9,4 +9,40 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
 
+    # Delete methods to clear the database before each seeding
+    session.query(Flight).delete()
+    session.query(Passenger).delete()
+    session.query(Reservation).delete()
+
     fake = Faker()
+
+    flights = []
+
+    
+
+
+    passengers = []
+
+
+
+    reservations = []
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    session.commit()
+    session.close()
