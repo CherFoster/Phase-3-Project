@@ -1,10 +1,12 @@
 from sqlalchemy import create_engine
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import sessionmaker
+from faker import Faker
+from models import Flight, Passenger, Reservation
+import random
 
-engine = create_engine("sqlite:///band_lockers.db")
-session = Session(engine, future=True)
+if __name__ == "__main__":
+    engine = create_engine("sqlite:///flights.db")
+    Session = sessionmaker(bind=engine)
+    session = Session()
 
-# _Create instances of classes here..._
-
-session.close()
-session.commit()
+    fake = Faker()
