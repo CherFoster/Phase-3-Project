@@ -21,8 +21,22 @@ if __name__ == "__main__":
     random_hour = random.randint(0, 23)  
     random_minute = random.randint(0, 59) 
 
-    for i in range(10):
+    list_of_airlines = [
+        "United",
+        "Southwest",
+        "Frontier",
+        "Jet Blue",
+        "Spirit",
+        "American",
+        "Delta",
+        "Alaska",
+        "SkyWest",
+        "Lufthansa"
+    ]
+
+    for _ in range(10):
         flight = Flight(
+            airline = random.choice(list_of_airlines),
             flight_number = random.randint(100, 9999),
             origin = f"{fake.city()}",
             destination = f"{fake.city()}",
@@ -30,12 +44,14 @@ if __name__ == "__main__":
             arrival_time = datetime.time(random_hour, random_minute)
         )
         flights.append(flight)
+        session.add(flight)
+        session.commit()
     
 
 
 
     passengers = []
-
+    # phone=random.randint(1000000000, 9999999999)
 
 
     reservations = []
@@ -56,6 +72,4 @@ if __name__ == "__main__":
 
 
 
-    session.add(flight)
-    session.commit()
     session.close()
