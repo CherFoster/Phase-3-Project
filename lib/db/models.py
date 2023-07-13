@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Integer, ForeignKey, DateTime
+from sqlalchemy import Column, String, Integer, ForeignKey, Date
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -35,14 +35,14 @@ class Passenger(Base):
     id = Column(Integer(), primary_key=True)
     first_name = Column(String())
     last_name = Column(String())
-    phone_number = Column(Integer())
+    phone_number = Column(String())
     flight_id = Column(Integer(), ForeignKey('flights.id'))
 
     def __repr__(self):
         return (
-            f"ID: {self.id}" + \
-            f"Name: {self.first_name} {self.last_name}" + \
-            f"Phone Number: {self.phone_number}"
+            f"ID: {self.id}, " \
+            + f"Name: {self.first_name} {self.last_name}, " \
+            + f"Phone Number: {self.phone_number}"
         )
 
 
@@ -51,12 +51,14 @@ class Reservation(Base):
 
     id = Column(Integer(), primary_key=True)
     confirmation = Column(String())
-    date = Column(DateTime())
+    date = Column(Date())
+    flight_class = Column(String())
     flight_id = Column(Integer(), ForeignKey('flights.id'))
 
     def __repr__(self):
         return (
-            f"ID: {self.id}" + \
-            f"Confirmation Number: {self.confirmation}" + \
-            f"Date: {self.date}"
+             f"ID: {self.id}, " \
+            + f"Confirmation Number: {self.confirmation}, " \
+            + f"Date: {self.date}, " \
+            + f"Class: {self.flight_class}"
         )

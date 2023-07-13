@@ -3,19 +3,23 @@ from sqlalchemy.orm import sessionmaker
 from faker import Faker
 from models import Flight, Passenger, Reservation
 import random
+import string
+from datetime import date
 
 if __name__ == "__main__":
     engine = create_engine("sqlite:///flights.db")
     Session = sessionmaker(bind=engine)
     session = Session()
 
+    fake = Faker()
+
     # Delete methods to clear the database before each seeding
     session.query(Flight).delete()
     session.query(Passenger).delete()
     session.query(Reservation).delete()
+    
 
-    fake = Faker()
-
+    # For Flight Class:
     flights = []
 
     list_of_airlines = [
@@ -31,7 +35,7 @@ if __name__ == "__main__":
         "Lufthansa"
     ]
 
-    for _ in range(10):
+    for _ in range(100):
         departure_time = fake.time_object()
         arrival_time = fake.time_object()
 
@@ -43,18 +47,61 @@ if __name__ == "__main__":
             departure_time = departure_time.strftime("%H:%M"),
             arrival_time = arrival_time.strftime("%H:%M")
         )
-        flights.append(flight)
+
         session.add(flight)
         session.commit()
+        flights.append(flight)
+
+    # Retrieves all instances of the Flight class
+    all_flights = session.query(Flight).all()
+
+    # For Passenger Class:
+    passengers = []
+
+    for _ in range(300):
+        passenger = Passenger(
+            first_name = f"{fake.first_name()}",
+            last_name = f"{fake.last_name()}",
+            phone_number = f"{fake.phone_number()}",
+            flight_id = random.choice(all_flights).id
+        )
+
+        session.add(passenger)
+        session.commit()
+        passengers.append(passenger)
+   
+    # For Reservation Class:
+    reservations = []
+
+    classes_list = {
+        1 : "First Class",
+        2 : "Business Class",
+        3 : "Premium Economy Class",
+        4 : "Economy Plus",
+        5 : "Economy Class"
+    }
+
+    # Generates random confirmation numbers
+    def generate_confirmation_number(length=6):
+        characters = string.ascii_uppercase + string.digits
+        confirmation_number = ''.join(random.choices(characters, k=length))
+        return confirmation_number
     
+    for _ in range(300):
+        for type in classes_list:
+            confirmation_number = generate_confirmation_number()
 
+            reservation = Reservation(
+                confirmation = confirmation_number,
+                date = fake.date_between(start_date='today', end_date='+1y'),
+                flight_class = classes_list[type],
+                flight_id = random.choice(all_flights).id          
+        )
 
-
-    # passengers = []
-    # phone=random.randint(1000000000, 9999999999)
-
-
-    # reservations = []
+        session.add(reservation)
+        session.commit()
+        reservations.append(reservation)
+    
 
 
 
