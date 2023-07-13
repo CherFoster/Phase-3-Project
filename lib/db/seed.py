@@ -2,7 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from faker import Faker
 from models import Flight, Passenger, Reservation
-import random, datetime
+import random
 
 if __name__ == "__main__":
     engine = create_engine("sqlite:///flights.db")
@@ -18,9 +18,6 @@ if __name__ == "__main__":
 
     flights = []
 
-    random_hour = random.randint(0, 23)  
-    random_minute = random.randint(0, 59) 
-
     list_of_airlines = [
         "United",
         "Southwest",
@@ -35,13 +32,16 @@ if __name__ == "__main__":
     ]
 
     for _ in range(10):
+        departure_time = fake.time_object()
+        arrival_time = fake.time_object()
+
         flight = Flight(
             airline = random.choice(list_of_airlines),
             flight_number = random.randint(100, 9999),
             origin = f"{fake.city()}",
             destination = f"{fake.city()}",
-            departure_time = datetime.time(random_hour, random_minute),
-            arrival_time = datetime.time(random_hour, random_minute)
+            departure_time = departure_time.strftime("%H:%M"),
+            arrival_time = arrival_time.strftime("%H:%M")
         )
         flights.append(flight)
         session.add(flight)
@@ -50,11 +50,11 @@ if __name__ == "__main__":
 
 
 
-    passengers = []
+    # passengers = []
     # phone=random.randint(1000000000, 9999999999)
 
 
-    reservations = []
+    # reservations = []
 
 
 
@@ -72,4 +72,4 @@ if __name__ == "__main__":
 
 
 
-    session.close()
+    # session.close()

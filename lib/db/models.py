@@ -12,20 +12,20 @@ class Flight(Base):
     flight_number = Column(Integer())
     origin = Column(String())
     destination = Column(String())
-    departure_time = Column(Integer())
+    departure_time = Column(String())
     arrival_time = Column(Integer())
     passengers = relationship('Passenger', backref=backref('flight'))
     reservations = relationship('Reservation', backref=backref('flight'))
 
     def __repr__(self):
         return (
-            f"ID: {self.id}" + \
-            f"Airline: {self.airline}" + \
-            f"Flight Number: {self.flight_number}" + \
-            f"Origin: {self.origin}" + \
-            f"Destination: {self.destination}" + \
-            f"Departure Time: {self.departure_time}" + \
-            f"Arrival Time: {self.arrival_time}"
+            f"ID: {self.id}, " \
+           + f"Airline: {self.airline}, " \
+           + f"Flight Number: {self.flight_number}, " \
+           + f"Origin: {self.origin}, " \
+           + f"Destination: {self.destination}, " \
+           + f"Departure Time: {self.departure_time}, " \
+           + f"Arrival Time: {self.arrival_time}" \
         )
 
     
