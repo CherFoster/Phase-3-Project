@@ -89,6 +89,7 @@ if __name__ == "__main__":
     
     for _ in range(300):
         for type in classes_list:
+            type = random.choice(list(classes_list.keys()))
             confirmation_number = generate_confirmation_number()
 
             reservation = Reservation(
@@ -102,21 +103,6 @@ if __name__ == "__main__":
         session.commit()
         reservations.append(reservation)
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     # session.close()
