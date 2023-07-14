@@ -58,7 +58,7 @@ if __name__ == "__main__":
     # For Passenger Class:
     passengers = []
 
-    for _ in range(300):
+    for _ in range(100):
         passenger = Passenger(
             first_name = f"{fake.first_name()}",
             last_name = f"{fake.last_name()}",
@@ -78,7 +78,7 @@ if __name__ == "__main__":
         2 : "Business Class",
         3 : "Premium Economy Class",
         4 : "Economy Plus",
-        5 : "Economy Class"
+        5 : "Coach"
     }
 
     # Generates random confirmation numbers
@@ -87,7 +87,7 @@ if __name__ == "__main__":
         confirmation_number = ''.join(random.choices(characters, k=length))
         return confirmation_number
     
-    for _ in range(300):
+    for _ in range(100):
         for type in classes_list:
             type = random.choice(list(classes_list.keys()))
             confirmation_number = generate_confirmation_number()

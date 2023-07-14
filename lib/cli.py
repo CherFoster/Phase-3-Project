@@ -1,15 +1,19 @@
 #!/usr/bin/env python3
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
+from db.models import Flight, Passenger, Reservation
 from pyfiglet import Figlet
 
 engine = create_engine("sqlite:///db/flights.db")
 session = Session(engine, future=True)
 
+def greeting():
+    print("")
+    print(Figlet(font = "starwars").renderText("Flight Info"))
+
 def main():
     choice = 0
     while choice != 4:
-        print("Flight Info")
         print("Welcome...")
         print('''
                 What information would you like to look up?
@@ -21,4 +25,5 @@ def main():
         choice = int(input("                Enter : ")) 
 
 if __name__ == 'main':
+    greeting()
     main()
