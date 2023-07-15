@@ -35,7 +35,7 @@ if __name__ == "__main__":
         "Lufthansa"
     ]
 
-    for _ in range(100):
+    for _ in range(75):
         departure_time = fake.time_object()
         arrival_time = fake.time_object()
 
