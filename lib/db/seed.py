@@ -87,7 +87,7 @@ if __name__ == "__main__":
         confirmation_number = ''.join(random.choices(characters, k=length))
         return confirmation_number
     
-    for _ in range(100):
+    for _ in range(75):
         for type in classes_list:
             type = random.choice(list(classes_list.keys()))
             confirmation_number = generate_confirmation_number()
