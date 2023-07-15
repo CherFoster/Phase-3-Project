@@ -9,7 +9,7 @@ session = Session(engine, future=True)
 
 def greeting():
     print("")
-    print(Figlet(font = "cyberlarge").renderText("Flight Info"))
+    print(Figlet(font = "starwars").renderText("AirBook"))
 
 def navigate_back():
     selection = 0
@@ -25,6 +25,7 @@ def navigate_back():
             print("")
 
         if selection == 2:
+            greeting()
             main()
 
 
@@ -45,7 +46,7 @@ def main():
         if choice == 1:
             flight_choice = 0
             while flight_choice != 4:
-                print(Figlet(font = "standard").renderText("Flights"))
+                print(Figlet(font = "cyberlarge").renderText("Flight Info"))
                 print('''
                     1) View all flights
                     2) Search by airline
@@ -54,7 +55,8 @@ def main():
                       ''')
                 flight_choice = int(input("               Enter number : "))
                 all_flights = session.query(Flight).all()
-                if flight_choice == 1:
+
+                if flight_choice == 2:
                     # Set() keeps track of airline names already printed
                     all_airlines = set() 
                     for flight in all_flights:
@@ -68,6 +70,8 @@ def main():
                     
                     if airline_name:
                         for info in airline_name:
+                            print(f"{info.airline}")
+                            print("---------------")
                             print(f"Flight Number: {info.flight_number}")
                             print(f"Origin: {info.origin}")
                             print(f"Destination: {info.destination}")
