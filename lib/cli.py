@@ -3,9 +3,16 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 from db.models import Flight, Passenger, Reservation
 from pyfiglet import Figlet
+import sys
+import importlib
 
 engine = create_engine("sqlite:///db/flights.db")
 session = Session(engine, future=True)
+
+sys.path.append('./helpers')
+
+flight_info_functions = importlib.import_module('flight_info_functions')
+passenger_info_functions = importlib.import_module('passenger_info_functions')
 
 def greeting():
     print("")
@@ -28,6 +35,10 @@ def navigate_back():
             greeting()
             main()
 
+def exit():
+    print(Figlet(font = "cybermedium").renderText("Goodbye"))
+    print("See you next time in the friendly skies!")
+    print("")
 
 def main():
     choice = 0
@@ -45,43 +56,69 @@ def main():
 
         if choice == 1:
             flight_choice = 0
-            while flight_choice != 4:
-                print(Figlet(font = "cyberlarge").renderText("Flight Info"))
+            while flight_choice != 5:
+                print(Figlet(font = "cybermedium").renderText("Flight Info"))
                 print('''
                     1) View all flights
                     2) Search by airline
                     3) Search by origin
-                    4) Search by destination  
+                    4) Search by destination 
+                    5) Main Menu 
                       ''')
                 flight_choice = int(input("               Enter number : "))
-                all_flights = session.query(Flight).all()
+
+                if flight_choice == 1:
+                    flight_info_functions.view_all_flights()
+                    navigate_back()
 
                 if flight_choice == 2:
-                    # Set() keeps track of airline names already printed
-                    all_airlines = set() 
-                    for flight in all_flights:
-                        if flight.airline not in all_airlines:
-                            print(flight.airline)
-                            all_airlines.add(flight.airline)
-                    print("")
-                    view_airline = input("Enter the name of the airline : ")
-                    print("")
-                    airline_name = session.query(Flight).filter(Flight.airline.ilike(f"%{view_airline}%")).all()
-                    
-                    if airline_name:
-                        for info in airline_name:
-                            print(f"{info.airline}")
-                            print("---------------")
-                            print(f"Flight Number: {info.flight_number}")
-                            print(f"Origin: {info.origin}")
-                            print(f"Destination: {info.destination}")
-                            print(f"Departure Time: {info.departure_time}")
-                            print(f"Arrival Time: {info.arrival_time}")
-                            print("")
-
+                    flight_info_functions.view_by_airline()
                     navigate_back()
-                            
-                        
+
+                if flight_choice == 3:
+                    flight_info_functions.view_by_origin()
+                    navigate_back()
+
+                if flight_choice == 4:
+                    flight_info_functions.view_by_destination()
+                    navigate_back()
+
+                if flight_choice == 5:
+                    greeting()
+                    main()
+
+        if choice == 2:
+            passenger_choice = 0
+            while passenger_choice != 4:
+                print(Figlet(font = "cybermedium").renderText("Passenger Info"))
+                print('''
+                    1) View all passengers
+                    2) View passengers on flights
+                    3) Search by last name
+                    4) Main Menu 
+                     
+                      ''')
+                passenger_choice = int(input("               Enter number : "))
+
+                if passenger_choice == 1:
+                    passenger_info_functions.view_all_passengers()
+                    navigate_back()
+
+                if passenger_choice == 2:
+                    passenger_info_functions.view_pax_count()
+                    navigate_back()
+
+                if passenger_choice == 3:
+                    passenger_info_functions.search_by_last_name()
+                    navigate_back()
+
+                if passenger_choice == 4:
+                    greeting()
+                    main()
+
+        
+        if choice == 4:
+            exit()
 
 if __name__ == '__main__':
     greeting()
