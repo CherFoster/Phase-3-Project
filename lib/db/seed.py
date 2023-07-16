@@ -70,6 +70,8 @@ if __name__ == "__main__":
         session.commit()
         passengers.append(passenger)
    
+    all_passengers = session.query(Passenger).all()
+    
     # For Reservation Class:
     reservations = []
 
@@ -87,7 +89,7 @@ if __name__ == "__main__":
         confirmation_number = ''.join(random.choices(characters, k=length))
         return confirmation_number
     
-    for _ in range(75):
+    for _ in range(100):
         for type in classes_list:
             type = random.choice(list(classes_list.keys()))
             confirmation_number = generate_confirmation_number()
@@ -96,7 +98,8 @@ if __name__ == "__main__":
                 confirmation = confirmation_number,
                 date = fake.date_between(start_date='today', end_date='+1y'),
                 flight_class = classes_list[type],
-                flight_id = random.choice(all_flights).id          
+                flight_id = random.choice(all_flights).id,
+                passenger_id = random.choice(all_passengers).id          
         )
 
         session.add(reservation)

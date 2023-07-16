@@ -13,6 +13,7 @@ sys.path.append('./helpers')
 
 flight_info_functions = importlib.import_module('flight_info_functions')
 passenger_info_functions = importlib.import_module('passenger_info_functions')
+reservation_functions = importlib.import_module('reservation_functions')
 
 def greeting():
     print("")
@@ -112,6 +113,35 @@ def main():
                     passenger_info_functions.search_by_last_name()
                     navigate_back()
 
+                if passenger_choice == 4:
+                    greeting()
+                    main()
+            
+        if choice == 3:
+            reservation_choice = 0
+            while reservation_choice != 4:
+                print(Figlet(font = "cybermedium").renderText("Reservations"))
+                print('''
+                    1) View all reservations
+                    2) Search by confirmation number
+                    3) Create reservation
+                    4) Main Menu 
+                     
+                      ''')
+                passenger_choice = int(input("               Enter number : "))
+
+                if passenger_choice == 1:
+                    reservation_functions.view_all_reservations()
+                    navigate_back()
+
+                if passenger_choice == 2:
+                    reservation_functions.search()
+                    navigate_back()
+
+                if passenger_choice == 3:
+                    reservation_functions.create()
+                    navigate_back()
+                
                 if passenger_choice == 4:
                     greeting()
                     main()
