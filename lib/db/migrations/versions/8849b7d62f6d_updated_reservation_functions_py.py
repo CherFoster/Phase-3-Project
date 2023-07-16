@@ -1,8 +1,8 @@
-"""Testing migrations
+"""updated reservation_functions.py
 
-Revision ID: de0a906f7bcc
-Revises: 354eb27467f2
-Create Date: 2023-07-16 12:37:55.591032
+Revision ID: 8849b7d62f6d
+Revises: 
+Create Date: 2023-07-16 14:07:48.086692
 
 """
 from alembic import op
@@ -10,8 +10,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'de0a906f7bcc'
-down_revision = '354eb27467f2'
+revision = '8849b7d62f6d'
+down_revision = None
 branch_labels = None
 depends_on = None
 

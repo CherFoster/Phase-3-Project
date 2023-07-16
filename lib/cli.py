@@ -119,13 +119,14 @@ def main():
             
         if choice == 3:
             reservation_choice = 0
-            while reservation_choice != 4:
+            while reservation_choice != 5:
                 print(Figlet(font = "cybermedium").renderText("Reservations"))
                 print('''
                     1) View all reservations
                     2) Search by confirmation number
                     3) Create reservation
-                    4) Main Menu 
+                    4) Delete reservation
+                    5) Main Menu 
                      
                       ''')
                 passenger_choice = int(input("               Enter number : "))
@@ -141,8 +142,12 @@ def main():
                 if passenger_choice == 3:
                     reservation_functions.create()
                     navigate_back()
-                
+
                 if passenger_choice == 4:
+                    reservation_functions.delete()
+                    navigate_back()
+                
+                if passenger_choice == 5:
                     greeting()
                     main()
 
