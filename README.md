@@ -46,6 +46,7 @@ For questions, please reach out to cherise.foster@gmail.com
 
 ### References
 [Faker](https://faker.readthedocs.io/en/master/)
+
 [PyFiglet](https://pypi.org/project/pyfiglet/0.7/)
 
 
