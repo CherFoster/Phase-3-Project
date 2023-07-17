@@ -13,7 +13,7 @@ class Flight(Base):
     origin = Column(String())
     destination = Column(String())
     departure_time = Column(String())
-    arrival_time = Column(Integer())
+    arrival_time = Column(String())
     passengers = relationship('Passenger', backref=backref('flight'))
     reservations = relationship('Reservation', backref=backref('flight'))
 

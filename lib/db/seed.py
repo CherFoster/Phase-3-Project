@@ -4,7 +4,7 @@ from faker import Faker
 from models import Flight, Passenger, Reservation
 import random
 import string
-from datetime import date
+
 
 if __name__ == "__main__":
     engine = create_engine("sqlite:///flights.db")
