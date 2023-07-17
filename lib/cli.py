@@ -23,7 +23,7 @@ def navigate_back():
     selection = 0
     while selection != 1:
         print('''
-                Would you like to do another search?
+                Would you like to go back to the module?
                     1) Yes
                     2) No - Go back to Main Menu
               ''')
@@ -154,6 +154,7 @@ def main():
         
         if choice == 4:
             exit()
+            quit()
 
 if __name__ == '__main__':
     greeting()
