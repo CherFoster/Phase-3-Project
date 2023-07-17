@@ -56,8 +56,9 @@ def create():
     print("")
     confirmation = input("Confirmation number (6 Characters max, all caps): ")
     date_str = input("Date (YYYY-MM-DD): ")
-    passenger_first_name = input("Passenger's First Name: ")
-    passenger_last_name = input("Passenger's Last Name: ")
+    first_name = input("Passenger's First Name: ")
+    last_name = input("Passenger's Last Name: ")
+    phone_number = input("Phone number: ")
     flight_class = input("Flight class: ")
     flight_id = input("Flight ID: ")
 
@@ -68,7 +69,7 @@ def create():
         airline = flight.airline
         flight_number = flight.flight_number
 
-    new_passenger = Passenger(first_name=passenger_first_name, last_name=passenger_last_name)
+    new_passenger = Passenger(first_name=first_name, last_name=last_name, phone_number=phone_number)
     session.add(new_passenger)
     session.commit()
 
@@ -82,6 +83,7 @@ def create():
     print(f"Confirmation: {new_reservation.confirmation}")
     print(f"Date: {new_reservation.date}")
     print(f"Passenger: {new_reservation.passenger.first_name} {new_reservation.passenger.last_name}")
+    print(f"Phone number: {new_reservation.passenger.phone_number}")
     print(f"Class: {new_reservation.flight_class}")
     print(f"Airline: {airline}")
     print(f"Flight #: {flight_number}")
