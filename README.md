@@ -12,6 +12,9 @@ Airbook is an application program that is ran from the command-line that allows 
 
 Fork and clone this repository and navigate into its directory to get started. Make sure you have Python and SQLAlchemy installed before running the application. Install SQLAlchemy by running <code>pip install sqlalchemy</code>. Run <code>pipenv install</code> to install any dependencies, and enter the virtual environment by running <code>pipenv shell</code>. Navigate into the lib/db directory and run <code>python seed.py</code> in the terminal to generate fake data to the database. Once the data has been created, change directories back into the lib folder and run <code>python cli.py</code> to run the Airbook application.
 
+### CLI Structure
+<code>cli.py</code> contains the code for user interactivity for the application. There are 4 functions within this file including a greeting function, a function to navigate back to the main menu, the main function, and an exit functio. The main() function contains the functionality for each user's prompted input. There are four options to choose from in the main menu that will reroute the user to a different module based on what information needs to be accessed. Please reference the visuals below for examples. 
+
 ### File Structure
 Models.py, seed.py, and the flights database are located in the lib/db directory. 
 
