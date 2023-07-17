@@ -41,5 +41,13 @@ Also located in lib/db is a folder where helper functions were created. These fu
 <a href="https://imgur.com/P83VoOs"><img src="https://i.imgur.com/P83VoOs.png" title="source: imgur.com" /></a>
 
 
+### Support
+For questions, please reach out to cherise.foster@gmail.com
+
+### References
+[Faker](https://faker.readthedocs.io/en/master/)
+[PyFiglet](https://pypi.org/project/pyfiglet/0.7/)
+
+
 
 
