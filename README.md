@@ -1,63 +1,20 @@
-# Phase 3 CLI Project Template
-
-## Learning Goals
-
-- Discuss the basic directory structure of a CLI.
-- Outline the first steps in building a CLI.
+# Airbook
 
 ***
 
-## Introduction
+## Description
 
-You now have a basic idea of what constitutes a CLI, but you (understandably!)
-likely don't have the best idea of where to start. Fork and clone this lesson
-for a template for your CLI. Take a look at the directory structure before we
-begin:
-
-```console
-.
-├── Pipfile
-├── Pipfile.lock
-├── README.md
-└── lib
-    ├── cli.py
-    ├── db
-    │   ├── models.py
-    │   └── seed.py
-    ├── debug.py
-    └── helpers.py
-```
-
-> **Note: You may already know some or all of the material covered in this
-> lesson. We hope that having it all in one place will help you in designing
-> and developing your project, regardless of where you're starting off.**
+Airbook is an application program that is ran from the command-line that allows you to view flight, passenger, and reservation information, as well as creating and deleting reservations for passengers.
 
 ***
 
-## Where Do I Start?
+## Getting Started
 
-This project will likely be one of the biggest projects you've undertaken so
-far. Your first task should be creating a Git repository to keep track of your
-work and roll back any undesired changes.
+Fork and clone this repository and navigate into its directory to get started. Make sure you have Python and SQLAlchemy installed before running the application. Install SQLAlchemy by running <code>pip install sqlalchemy</code>. Run <code>pipenv install</code> to install any dependencies, and enter the virtual environment by running <code>pipenv shell</code>. Navigate into the lib/db directory and run <code>python seed.py</code> in the terminal to generate fake data to the database. Once the data has been created, change directories back into the lib folder and run <code>python cli.py</code> to run the Airbook application.
 
-### Removing Existing Git Configuration
+### Visuals
 
-If you're using this template, start off by removing the existing metadata for
-Github and Canvas. Run the following command to carry this out:
-
-```console
-$ rm -rf .git .github .canvas
-```
-
-The `rm` command removes files from your computer's memory. The `-r` flag tells
-the console to remove _recursively_, which allows the command to remove
-directories and the files within them. `-f` removes them permanently.
-
-`.git` contains this directory's configuration to track changes and push to
-Github (you want to track and push _your own_ changes instead), and `.github`
-and `.canvas` contain the metadata to create a Canvas page from your Git repo.
-You don't have the permissions to edit our Canvas course, so it's not worth
-keeping them around.
+<a href="https://imgur.com/mNyjptI"><img src="https://i.imgur.com/mNyjptI.png" title="source: imgur.com" /></a>
 
 ### Creating Your Own Git Repo
 
