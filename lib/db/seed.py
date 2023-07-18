@@ -5,7 +5,6 @@ from models import Flight, Passenger, Reservation
 import random
 import string
 
-
 if __name__ == "__main__":
     engine = create_engine("sqlite:///flights.db")
     Session = sessionmaker(bind=engine)
@@ -18,7 +17,6 @@ if __name__ == "__main__":
     session.query(Passenger).delete()
     session.query(Reservation).delete()
     
-
     # For Flight Class:
     flights = []
 
@@ -105,7 +103,3 @@ if __name__ == "__main__":
         session.add(reservation)
         session.commit()
         reservations.append(reservation)
-    
-
-
-    # session.close()

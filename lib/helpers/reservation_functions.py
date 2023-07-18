@@ -3,13 +3,11 @@ from sqlalchemy.orm import Session
 from db.models import Flight, Passenger, Reservation
 from datetime import datetime
 
-
 engine = create_engine("sqlite:///db/flights.db")
 session = Session(engine, future=True)
 
 all_reservations = session.query(Reservation).all()
 
-# Change to view airlines reservations
 def view_all_reservations():
     for rez in all_reservations:
         print(f"""
