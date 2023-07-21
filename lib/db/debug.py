@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session, sessionmaker
 
-from models import (Base, Flight, Passenger, Reservation)
+from models import (Base)
 
 if __name__ == '__main__':
     engine = create_engine("sqlite:///flights.db")
